@@ -51,7 +51,7 @@ double calculateE(double x)
 	return result;
 }
 
-int main()
+int main(int argc, char** argv)
 {
     FILE *input, *output;
     struct timespec start;
