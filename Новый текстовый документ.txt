@@ -1,0 +1,61 @@
+#include <stdio.h>
+
+// Разработать программу, вычисляПервый член ряда должен иметь номер 0, а последний - номер k, такой что |ak| < 0,0001. В качестве значения e использовать 2,71828.
+// Входные данные
+// Задано одно вещественное число x.
+// Выходные данные
+// Вывести значение функции e^(−x) с точностью не хуже 0,0 %.
+// Примеры
+// Входные данные
+// 1
+// Выходные данные
+// 0.367879
+// Входные данные
+// 0
+// Выходные данные
+// 1
+
+double e = 2.71828;
+
+double calculateFactorial(int n)
+{
+	double factorial = 1;
+	for (int i = 1; i <= n; i++)
+	{
+		factorial *= i;
+	}
+	return factorial;
+}
+
+double calculatePower(double x, int n)
+{
+	double power = 1;
+	for (int i = 0; i < n; i++)
+	{
+		power *= x;
+	}
+	return power;
+}
+
+double calculateE(double x)
+{
+	double result = 0;
+	int k = 0;
+	double ak = 1;
+	while (ak >= 0.05)
+	{
+		ak = calculatePower(x, k) / calculateFactorial(k);
+		result += ak;
+		k++;
+	}
+	return result;
+}
+
+int main()
+{
+	double x;
+	scanf("%lf", &x);
+	printf("%f", calculateE(x));
+	return 0;
+}
+
